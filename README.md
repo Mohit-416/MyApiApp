@@ -1,67 +1,112 @@
-# MyApiApp
- 
-My Assssment Application
-Overview
-My Assssment Application is an Android app that lets users log in and see a list of items from an online service. It has three screens:
-·       Login: Users enter their name and ID to sign in.
-·       Dashboard: Shows a list of items related to the user.
-·       Details: Shows more information about a selected item.
-The app talks to the online API at https://nit3213api.onrender.com/.
-Features
-·       User login with username and password.
-·       Shows a list of items from the API.
-·       Can handle items with different kinds of information.
-·       Uses a clean way to organize code with dependency injection.
-·       Lists items with RecyclerView.
-·       Shows detailed info for each item.
-·       Logout button to return to login.
-Project Structure
-·       ApiService: Interface for API calls.
-·       MainActivity: Login screen.
-·       DashboardActivity: Shows list of items.
-·       DetailsActivity: Shows details of one item.
-·       Entity: Data model for items.
-·       EntityAdapter: Adapter for showing list of items.
-·       EntityDeserializer: Helps parse dynamic item data.
-·       NetworkModule: Provides Retrofit and Gson objects.
-·       Layout files: XML files for the UI.
-Setup Instructions
-Requirements
-·       Android Studio
-·       Android device or emulator with SDK 28+
-·       Internet connection
-Steps
-1.   Open the project in Android Studio.
-2.   Build the project (Gradle will download required libraries).
-3.   Run the app on your device or emulator.
-Usage
-1.   Open the app.
-2.   Enter your first name and student ID.
-3.   Tap Login.
-4.   After login, see the list of items on the dashboard.
-5.   Tap any item to see details.
-6.   Use Back button to return to dashboard.
-7.   Tap Logout to go back to login.
-Notes
-·       The app uses a special parser to handle items with different properties.
-·       Shows error messages if network calls fail.
-·       Uses Kotlin, Retrofit, Gson, and Dagger Hilt libraries.
-·       Backend API URL: https://nit3213api.onrender.com/
-·       The UI is simple and easy to use.
-Dependencies
-·       Retrofit for API calls
-·       Gson for JSON parsing
-·       Dagger Hilt for dependency injection
-·       AndroidX libraries for UI components
-File Summary
-·       MainActivity.kt: Login logic
-·       DashboardActivity.kt: List items and fetch data
-·       DetailsActivity.kt: Show item details
-·       Entity.kt: Data model
-·       EntityAdapter.kt: Adapter for RecyclerView
-·       EntityDeserializer.kt: Parse dynamic JSON
-·       NetworkModule.kt: Setup Retrofit and Gson
-·       XML layout files: UI design
-License
-This project is for learning purposes only.
- 
+# Android API Integration App
+
+## 📱 Overview
+
+This Android application demonstrates **API integration**, **user authentication**, and **dynamic data display** using Retrofit. It connects to the [VU-NIT3213 API](https://nit3213api.onrender.com/) to authenticate users, fetch dashboard data, and display item details.
+
+---
+
+## 🚀 Features
+
+- 🔐 **Login screen**: Authenticate with username and password.
+- 📊 **Dashboard screen**: Dynamically displays a list of entities based on the user's keypass.
+- 🧾 **Detail screen**: Shows more information for a selected entity.
+- 🔄 Retrofit-based networking
+- 🧪 Unit test-ready architecture
+- 🪛 Modular and scalable design
+
+---
+
+## 🧰 Tech Stack
+
+- Kotlin
+- Retrofit2
+- AndroidX
+- RecyclerView
+- Serializable model passing
+- Optional: Hilt (for DI), JUnit (for tests)
+
+---
+
+## 🌐 API Details
+
+- **Base URL**: `https://nit3213api.onrender.com/`
+
+### 🔑 Endpoints
+
+| Endpoint | Method | Description |
+|---------|--------|-------------|
+| `/login` | POST | Returns `keypass` for valid user credentials |
+| `/dashboard/{keypass}` | GET | Returns list of dynamic `Entity` objects |
+| `/dashboard/{keypass}/{entityId}` | GET | (Optional) Retrieves a specific entity |
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   ```
+
+2. **Open in Android Studio**
+
+3. **Build & Run** on emulator or real device (API 23+)
+
+4. **Login using credentials** (example):
+   ```
+   Username: John
+   Password: s12345678
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+├── MainActivity.kt            # Login screen
+├── DashboardActivity.kt       # Dashboard list screen
+├── DetailsActivity.kt         # Entity detail screen
+├── adapter/EntityAdapter.kt   # RecyclerView adapter
+├── LoginRequest.kt
+├── LoginResponse.kt
+├── DashboardResponse.kt
+├── Entity.kt
+├── di/
+│   ├── ApiService.kt
+│   └── RetrofitClient.kt
+├── res/layout/
+│   ├── activity_main.xml
+│   ├── activity_dashboard.xml
+│   ├── activity_details.xml
+│   └── item_entity.xml
+```
+
+---
+
+## 🧪 Example Test
+
+```kotlin
+class LoginRequestTest {
+    @Test
+    fun testLoginRequest() {
+        val login = LoginRequest("John", "s12345678")
+        assertEquals("John", login.username)
+        assertEquals("s12345678", login.password)
+    }
+}
+```
+
+---
+
+## ✍️ Author
+
+- **Name**: Mohit Roka Chhetri(s8113967)
+- **Course**: NIT3213 Mobile Application Development
+- **Year**: 2025
+
+---
+
+## 📝 License
+
+This project is for academic purposes under [VU NIT3213](https://www.vu.edu.au/) curriculum. Do not distribute without permission.
